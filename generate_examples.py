@@ -7,6 +7,14 @@ from typing import List, Dict, Any
 from transformers import AutoTokenizer
 import matplotlib.pyplot as plt
 import seaborn as sns
+import codecs
+
+def decode_utf8_garbage(token):
+    try:
+        return bytes(token, 'latin1').decode('utf-8')
+    except:
+        return token
+
 
 def load_tokenizers(model_ids: List[str]) -> Dict[str, AutoTokenizer]:
     """
@@ -32,49 +40,97 @@ def load_tokenizers(model_ids: List[str]) -> Dict[str, AutoTokenizer]:
             print(f"✗ Failed to load tokenizer for {model_id}: {str(e)}")
     
     return tokenizers
+    
+from typing import Dict, List, Any
+from transformers import AutoTokenizer
 
 def tokenize_sentences(tokenizers: Dict[str, AutoTokenizer], sentences: List[str]) -> Dict[str, List[Dict[str, Any]]]:
     """
-    Tokenize each sentence with each tokenizer.
-    
+    Tokenize each sentence with each tokenizer while attempting to output readable Korean tokens.
+
+    This function uses offset mappings when available to extract the exact substrings from the original sentence.
+    If offset mappings are not available or the result looks garbled, it falls back to re-encoding the tokens.
+
     Args:
-        tokenizers: Dictionary mapping model names to tokenizer objects
-        sentences: List of sentences to tokenize
-        
+        tokenizers: Dictionary mapping model names to tokenizer objects.
+        sentences: List of sentences to tokenize.
+
     Returns:
-        Dictionary mapping model names to lists of tokenization results
+        Dictionary mapping model names to lists of tokenization results.
+        Each result includes:
+          - 'sentence': original sentence
+          - 'tokens': tokenizer tokens
+          - 'token_ids': token IDs from the tokenizer
+          - 'readable_tokens': human-friendly tokens (attempting to recover original substrings)
+          - 'token_map': list of mappings for each token with token string, readable text, and token id
+          - 'decoded_sentence': the full sentence decoded from token IDs (skips special tokens)
     """
+
+    def fix_token_encoding(token: str) -> str:
+        """
+        If the token appears as garbled bytes (e.g. using byte-level BPE), try to re-encode it.
+        """
+        try:
+            # Try encoding as Latin-1 and decode as UTF-8
+            return token.encode('latin1').decode('utf-8')
+        except Exception:
+            return token
+
     tokenization_results = {}
-    
+
     for model_name, tokenizer in tokenizers.items():
-        print(f"\nTokenizing with {model_name}...")
+        print(f"\n--- Tokenizing with {model_name} ---")
         model_results = []
-        
+
         for sentence in sentences:
-            tokens = tokenizer.tokenize(sentence)
-            token_ids = tokenizer.encode(sentence)
+            # Get encoding with offset mapping if available.
+            encoding = tokenizer(sentence, return_offsets_mapping=True, add_special_tokens=True)
+            token_ids = encoding["input_ids"]
+            offsets = encoding.get("offset_mapping", None)
+            tokens = tokenizer.convert_ids_to_tokens(token_ids)
+            readable_tokens = []
+
+            # Use offset mapping to extract original substrings if they exist.
+            if offsets:
+                for (start, end) in offsets:
+                    # Some special tokens might have offset (0, 0)
+                    if start == 0 and end == 0:
+                        readable_tokens.append("")
+                    else:
+                        readable_tokens.append(sentence[start:end])
             
-            # Create a mapping between tokens and their IDs
-            # Note: The mapping might not be perfect if the tokenizer adds special tokens
+            # Fallback: decode individual tokens and try to clean them up
+            if not offsets or any(rt == "" for rt in readable_tokens):
+                # Attempt to convert tokens to string and fix encoding if needed
+                readable_tokens = [tokenizer.convert_tokens_to_string([tok]).strip() for tok in tokens]
+                readable_tokens = [fix_token_encoding(tok) for tok in readable_tokens]
+
+            # Create token mapping (token, token id, recovered readable text)
             token_map = []
-            for i, token in enumerate(tokens):
-                # We need to handle special tokens that might be added by the tokenizer
-                # This is a simplification and might not be perfect for all tokenizers
-                if i < len(token_ids) - 1:  # Avoid index errors
-                    token_map.append({
-                        "token": token,
-                        "id": token_ids[i + 1] if i == 0 and token_ids[0] != tokenizer.convert_tokens_to_ids(token) else token_ids[i]
-                    })
-            
+            for tok, tok_id, read_tok in zip(tokens, token_ids, readable_tokens):
+                token_map.append({
+                    "old_token": tok,
+                    "token": read_tok,
+                    "id": tok_id
+                })
+
+            # Full decoded sentence (skips special tokens)
+            decoded_sentence = tokenizer.decode(token_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)
+
             model_results.append({
                 "sentence": sentence,
-                "tokens": tokens,
+                "old_tokens": tokens,
                 "token_ids": token_ids,
-                "token_map": token_map
+                "tokens": readable_tokens,
+                "token_map": token_map,
+                "decoded_sentence": decoded_sentence
             })
-        
+
         tokenization_results[model_name] = model_results
-    
+
+    return tokenization_results
+
+
     return tokenization_results
 
 def create_comparison_dataframe(tokenization_results: Dict[str, List[Dict[str, Any]]]) -> Dict[str, pd.DataFrame]:

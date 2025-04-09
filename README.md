@@ -272,7 +272,7 @@ python3 generate_example.py --models {model list separater by space} --sentences
     </tr>
   </tbody>
 </table>
-        
+   
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -294,257 +294,257 @@ python3 generate_example.py --models {model list separater by space} --sentences
   <tbody>
     <tr>
       <td>1</td>
-      <td>ëĭ¤</td>
-      <td>1162</td>
-      <td>ëĭ¤</td>
-      <td>1162</td>
-      <td>ëĭ¤</td>
-      <td>3874</td>
-      <td>ëĭ¤</td>
+      <td>&lt;|begin_of_text|&gt;</td>
+      <td>200000</td>
+      <td>&lt;|begin_of_text|&gt;</td>
+      <td>200000</td>
+      <td>&lt;｜begin▁of▁sentence｜&gt;</td>
+      <td>0</td>
+      <td>다</td>
       <td>13146</td>
-      <td>ëĭ¤</td>
+      <td>&lt;s&gt;</td>
+      <td>1</td>
+      <td>&lt;bos&gt;</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>다</td>
+      <td>1162</td>
+      <td>다</td>
+      <td>1162</td>
+      <td>다</td>
+      <td>3874</td>
+      <td>양</td>
+      <td>126345</td>
+      <td>다</td>
       <td>1739</td>
       <td>다</td>
       <td>237131</td>
     </tr>
     <tr>
-      <td>2</td>
-      <td>ìĸĳ</td>
-      <td>1162</td>
-      <td>ìĸĳ</td>
-      <td>1162</td>
-      <td>ìĸĳ</td>
-      <td>3874</td>
-      <td>ìĸĳ</td>
-      <td>126345</td>
-      <td>ìĸĳ</td>
-      <td>1739</td>
-      <td>양</td>
-      <td>237131</td>
-    </tr>
-    <tr>
       <td>3</td>
-      <td>íķľ</td>
+      <td>양</td>
       <td>10461</td>
-      <td>íķľ</td>
+      <td>양</td>
       <td>10461</td>
-      <td>íķľ</td>
+      <td>양</td>
       <td>31123</td>
-      <td>íķľ</td>
-      <td>23573</td>
-      <td>íķľ</td>
-      <td>14977</td>
       <td>한</td>
+      <td>23573</td>
+      <td>양</td>
+      <td>14977</td>
+      <td>양</td>
       <td>238884</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>ĠíĨł</td>
+      <td>한</td>
       <td>1842</td>
-      <td>ĠíĨł</td>
+      <td>한</td>
       <td>1842</td>
-      <td>ĠíĨł</td>
+      <td>한</td>
       <td>5634</td>
-      <td>Ġí</td>
+      <td>토</td>
       <td>10764</td>
-      <td>ĠíĨł</td>
+      <td>한</td>
       <td>2316</td>
-      <td>▁토</td>
+      <td>한</td>
       <td>237384</td>
     </tr>
     <tr>
       <td>5</td>
-      <td>íģ¬</td>
+      <td>토</td>
       <td>30209</td>
-      <td>íģ¬</td>
+      <td>토</td>
       <td>30209</td>
-      <td>íģ¬</td>
+      <td>토</td>
       <td>74905</td>
-      <td>Ĩ</td>
+      <td>토</td>
       <td>228</td>
-      <td>íģ¬</td>
+      <td>토</td>
       <td>28799</td>
-      <td>크</td>
+      <td>토</td>
       <td>68274</td>
     </tr>
     <tr>
       <td>6</td>
-      <td>ëĤĺ</td>
+      <td>크</td>
       <td>10987</td>
-      <td>ëĤĺ</td>
+      <td>크</td>
       <td>10987</td>
-      <td>ëĤĺ</td>
+      <td>크</td>
       <td>34899</td>
-      <td>łí</td>
+      <td>토크</td>
       <td>57160</td>
-      <td>ëĤĺ</td>
+      <td>크</td>
       <td>14498</td>
-      <td>나</td>
+      <td>크</td>
       <td>238572</td>
     </tr>
     <tr>
       <td>7</td>
-      <td>ìĿ´ìłĢ</td>
+      <td>나</td>
       <td>4809</td>
-      <td>ìĿ´ìłĢ</td>
+      <td>나</td>
       <td>4809</td>
-      <td>ìĿ´</td>
+      <td>나</td>
       <td>12671</td>
-      <td>ģ</td>
+      <td>크</td>
       <td>223</td>
-      <td>ìĿ´</td>
+      <td>나</td>
       <td>3594</td>
-      <td>이</td>
+      <td>나</td>
       <td>237610</td>
     </tr>
     <tr>
       <td>8</td>
-      <td>ê°Ģ</td>
+      <td>이저</td>
       <td>119553</td>
-      <td>ê°Ģ</td>
+      <td>이저</td>
       <td>119553</td>
-      <td>ìłĢ</td>
+      <td>이</td>
       <td>3761</td>
-      <td>¬</td>
+      <td>크</td>
       <td>105</td>
-      <td>ìłĢ</td>
+      <td>이</td>
       <td>1856</td>
-      <td>저</td>
+      <td>이</td>
       <td>237077</td>
     </tr>
     <tr>
       <td>9</td>
-      <td>Ġìĸ´ëĸ»ê²Į</td>
-      <td>2166</td>
-      <td>Ġìĸ´ëĸ»ê²Į</td>
-      <td>2166</td>
-      <td>ê°Ģ</td>
-      <td>46520</td>
-      <td>ëĤĺ</td>
-      <td>60315</td>
-      <td>ê°Ģ</td>
-      <td>12375</td>
       <td>가</td>
+      <td>2166</td>
+      <td>가</td>
+      <td>2166</td>
+      <td>저</td>
+      <td>46520</td>
+      <td>나</td>
+      <td>60315</td>
+      <td>저</td>
+      <td>12375</td>
+      <td>저</td>
       <td>238650</td>
     </tr>
     <tr>
       <td>10</td>
-      <td>Ġì²ĺë¦¬</td>
+      <td>어떻게</td>
       <td>57215</td>
-      <td>Ġì²ĺë¦¬</td>
+      <td>어떻게</td>
       <td>57215</td>
-      <td>Ġìĸ´ëĸ»ê²Į</td>
+      <td>가</td>
       <td>6751</td>
-      <td>ìĿ´</td>
+      <td>이</td>
       <td>12802</td>
-      <td>Ġìĸ´ëĸ»ê²Į</td>
+      <td>가</td>
       <td>2385</td>
-      <td>▁어떻게</td>
+      <td>가</td>
       <td>237272</td>
     </tr>
     <tr>
       <td>11</td>
-      <td>íķĺëĬĶ</td>
+      <td>처리</td>
       <td>53982</td>
-      <td>íķĺëĬĶ</td>
+      <td>처리</td>
       <td>53982</td>
-      <td>Ġì²ĺë¦¬</td>
+      <td>어떻게</td>
       <td>107730</td>
-      <td>ìłĢ</td>
+      <td>저</td>
       <td>126781</td>
-      <td>Ġì²ĺë¦¬</td>
+      <td>어떻게</td>
       <td>24268</td>
-      <td>▁처리</td>
+      <td>어떻게</td>
       <td>61318</td>
     </tr>
     <tr>
       <td>12</td>
-      <td>ì§Ģ</td>
-      <td>5261</td>
-      <td>ì§Ģ</td>
-      <td>5261</td>
-      <td>íķĺëĬĶ</td>
-      <td>114952</td>
-      <td>ê°Ģ</td>
-      <td>19969</td>
-      <td>íķĺëĬĶ</td>
-      <td>66572</td>
       <td>하는</td>
+      <td>5261</td>
+      <td>하는</td>
+      <td>5261</td>
+      <td>처리</td>
+      <td>114952</td>
+      <td>가</td>
+      <td>19969</td>
+      <td>처리</td>
+      <td>66572</td>
+      <td>처리</td>
       <td>94478</td>
     </tr>
     <tr>
       <td>13</td>
-      <td>Ġë³´ê³ł</td>
-      <td>1979</td>
-      <td>Ġë³´ê³ł</td>
-      <td>1979</td>
-      <td>ì§Ģ</td>
-      <td>14007</td>
-      <td>Ġìĸ´ëĸ»ê²Į</td>
-      <td>130108</td>
-      <td>ì§Ģ</td>
-      <td>5447</td>
       <td>지</td>
+      <td>1979</td>
+      <td>지</td>
+      <td>1979</td>
+      <td>하는</td>
+      <td>14007</td>
+      <td>어떻게</td>
+      <td>130108</td>
+      <td>하는</td>
+      <td>5447</td>
+      <td>하는</td>
       <td>11973</td>
     </tr>
     <tr>
       <td>14</td>
-      <td>Ġìĭ¶</td>
+      <td>보고</td>
       <td>46830</td>
-      <td>Ġìĭ¶</td>
+      <td>보고</td>
       <td>46830</td>
-      <td>Ġë³´ê³ł</td>
+      <td>지</td>
       <td>6676</td>
-      <td>Ġì²ĺë¦¬</td>
+      <td>처리</td>
       <td>81058</td>
-      <td>Ġë³´ê³ł</td>
+      <td>지</td>
       <td>2369</td>
-      <td>▁보고</td>
+      <td>지</td>
       <td>237308</td>
     </tr>
     <tr>
       <td>15</td>
-      <td>ìĬµëĭĪëĭ¤</td>
+      <td>싶</td>
       <td>50316</td>
-      <td>ìĬµëĭĪëĭ¤</td>
+      <td>싶</td>
       <td>50316</td>
-      <td>Ġìĭ¶</td>
+      <td>보고</td>
       <td>112003</td>
-      <td>íķĺëĬĶ</td>
+      <td>하는</td>
       <td>42905</td>
-      <td>Ġìĭ¶</td>
+      <td>보고</td>
       <td>24564</td>
-      <td>▁싶</td>
+      <td>보고</td>
       <td>65819</td>
     </tr>
     <tr>
       <td>16</td>
-      <td>.</td>
-      <td>5700</td>
-      <td>.</td>
-      <td>5700</td>
-      <td>ìĬµëĭĪëĭ¤</td>
-      <td>124431</td>
-      <td>ì§Ģ</td>
-      <td>21329</td>
-      <td>ìĬµëĭĪëĭ¤</td>
-      <td>18288</td>
       <td>습니다</td>
+      <td>5700</td>
+      <td>습니다</td>
+      <td>5700</td>
+      <td>싶</td>
+      <td>124431</td>
+      <td>지</td>
+      <td>21329</td>
+      <td>싶</td>
+      <td>18288</td>
+      <td>싶</td>
       <td>59475</td>
     </tr>
     <tr>
       <td>17</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
       <td>.</td>
+      <td>26</td>
+      <td>.</td>
+      <td>26</td>
+      <td>습니다</td>
       <td>19418</td>
-      <td>Ġë³´</td>
+      <td>보</td>
       <td>63332</td>
-      <td>.</td>
+      <td>습니다</td>
       <td>10883</td>
-      <td>.</td>
+      <td>습니다</td>
       <td>10131</td>
     </tr>
     <tr>
@@ -553,14 +553,14 @@ python3 generate_example.py --models {model list separater by space} --sentences
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td>ê³ł</td>
+      <td>.</td>
+      <td>16</td>
+      <td>고</td>
       <td>34395</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>.</td>
+      <td>1046</td>
+      <td>.</td>
+      <td>236761</td>
     </tr>
     <tr>
       <td>19</td>
@@ -570,7 +570,7 @@ python3 generate_example.py --models {model list separater by space} --sentences
       <td></td>
       <td></td>
       <td></td>
-      <td>Ġìĭ</td>
+      <td>싶</td>
       <td>28927</td>
       <td></td>
       <td></td>
@@ -585,7 +585,7 @@ python3 generate_example.py --models {model list separater by space} --sentences
       <td></td>
       <td></td>
       <td></td>
-      <td>¶</td>
+      <td>싶</td>
       <td>114</td>
       <td></td>
       <td></td>
@@ -600,8 +600,23 @@ python3 generate_example.py --models {model list separater by space} --sentences
       <td></td>
       <td></td>
       <td></td>
-      <td>ìĬµëĭĪëĭ¤</td>
+      <td>습니다</td>
       <td>38231</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>.</td>
+      <td>13</td>
       <td></td>
       <td></td>
       <td></td>
