@@ -130,19 +130,19 @@ python3 generate_example.py --models {model list separater by space} --sentences
 ## Visualization Results
 
 ### Token Count Comparison
-![Absolute Token Count Comparison](tokenizer_comparison_results/absolute_token_count_comparison.png)
+![Absolute Token Count Comparison](results/tokenizer_comparison_results/absolute_token_count_comparison.png)
 *Comparison of absolute token counts across different tokenizers for Korean text samples.*
 
 ### Token Distribution
-![Percentage Token Distribution Comparison](tokenizer_comparison_results/percentage_token_distribution_comparison.png)
+![Percentage Token Distribution Comparison](results/tokenizer_comparison_results/percentage_token_distribution_comparison.png)
 *Percentage distribution of different token types across tokenizers.*
 
 ### Stacked Distribution
-![Stacked Percentage Distribution](tokenizer_comparison_results/stacked_percentage_distribution.png)
+![Stacked Percentage Distribution](results/tokenizer_comparison_results/stacked_percentage_distribution.png)
 *Stacked view of token type distribution percentages across tokenizers.*
 
 ### Radar Chart
-![Radar Chart Comparison](tokenizer_comparison_results/radar_chart_comparison.png)
+![Radar Chart Comparison](results/tokenizer_comparison_results/radar_chart_comparison.png)
 *Radar chart showing the relative strengths of each tokenizer across different metrics.*
 
 ## Sentence examples
