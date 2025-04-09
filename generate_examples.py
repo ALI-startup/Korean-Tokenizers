@@ -460,7 +460,7 @@ def main():
         help="Sentences to tokenize, separated by pipe character |"
     )
     
-    parser.add_argument('--output_dir', type=str, default="tokenizer_sentence_comparison",
+    parser.add_argument('--output_dir', type=str, default="results/tokenizer_sentence_comparison",
                         help="Directory to save results and visualizations")
     
     parser.add_argument('--file', type=str, 

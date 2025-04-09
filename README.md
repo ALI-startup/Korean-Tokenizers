@@ -13,7 +13,6 @@ python3 generate_example.py --models {model list separater by space} --sentences
 ```
 ## Analysis Summary
 
-</style>
 <table id="T_7cf13">
   <caption>Detailed Tokenizer Analysis Comparison</caption>
   <thead>

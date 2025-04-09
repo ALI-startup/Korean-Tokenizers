@@ -461,7 +461,7 @@ def main():
                         default='meta-llama/Llama-4-Maverick-17B-128E meta-llama/Llama-4-Scout-17B-16E'
                         ' deepseek-ai/DeepSeek-V3-0324 Qwen/QwQ-32B mistralai/Mistral-Small-3.1-24B-Base-2503 google/gemma-3-27b-it',
                         help="List of model IDs to analyze and compare")
-    parser.add_argument('--output_dir', type=str, default="tokenizer_comparison_results",
+    parser.add_argument('--output_dir', type=str, default="results/tokenizer_comparison_results",
                         help="Directory to save results and visualizations")
     
     args = parser.parse_args()
