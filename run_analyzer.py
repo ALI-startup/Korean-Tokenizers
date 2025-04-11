@@ -82,10 +82,12 @@ def create_comparison_dataframe(results: List[Dict[str, Any]]) -> pd.DataFrame:
             'Total Tokens': stats['total_tokens'],
             'Pure English': stats['pure_english'],
             'Pure English (%)': round(stats['pure_english'] / stats['total_tokens'] * 100, 2),
-            'Hangul Possible': stats['hangul_possible'],
-            'Hangul Possible (%)': round(stats['hangul_possible'] / stats['total_tokens'] * 100, 2),
-            'Complete Hangul': stats['complete_hangul'],
-            'Complete Hangul (%)': round(stats['complete_hangul'] / stats['total_tokens'] * 100, 2),
+            'English Containing': stats['english_containing'],
+            'English Containing (%)': round(stats['english_containing'] / stats['total_tokens'] * 100, 2),
+            'Pure Hangul': stats['pure_hangul'],
+            'Pure Hangul (%)': round(stats['pure_hangul'] / stats['total_tokens'] * 100, 2),
+            'Hangul Containing': stats['hangul_containing'],
+            'Hangul Containing (%)': round(stats['hangul_containing'] / stats['total_tokens'] * 100, 2),
             'Special Chars': stats['special_char'],
             'Special Chars (%)': round(stats['special_char'] / stats['total_tokens'] * 100, 2),
             'Uncategorized': stats['uncategorized'],
@@ -110,7 +112,7 @@ def create_absolute_count_histogram(df: pd.DataFrame, output_dir: str):
     # Prepare data for plotting
     plot_df = df.melt(
         id_vars=['Model'],
-        value_vars=['Pure English', 'Hangul Possible', 'Complete Hangul', 'Special Chars', 'Uncategorized'],
+        value_vars=['Pure English', 'English Containing', 'Pure Hangul', 'Hangul Containing', 'Special Chars', 'Uncategorized'],
         var_name='Category',
         value_name='Count'
     )
@@ -152,7 +154,8 @@ def create_percentage_histogram(df: pd.DataFrame, output_dir: str):
     # Prepare data for plotting
     plot_df = df.melt(
         id_vars=['Model'],
-        value_vars=['Pure English (%)', 'Hangul Possible (%)', 'Complete Hangul (%)', 'Special Chars (%)', 'Uncategorized (%)'],
+        value_vars=['Pure English (%)', 'English Containing (%)', 'Pure Hangul (%)', 
+                   'Hangul Containing (%)', 'Special Chars (%)', 'Uncategorized (%)'],
         var_name='Category',
         value_name='Percentage'
     )
@@ -192,8 +195,8 @@ def create_stacked_percentage_chart(df: pd.DataFrame, output_dir: str):
     plt.figure(figsize=(15, 8))
     
     # Extract required columns
-    plot_df = df[['Model', 'Pure English (%)', 'Hangul Possible (%)', 
-                 'Complete Hangul (%)', 'Special Chars (%)', 'Uncategorized (%)']]
+    plot_df = df[['Model', 'Pure English (%)', 'English Containing (%)', 'Pure Hangul (%)', 
+                 'Hangul Containing (%)', 'Special Chars (%)', 'Uncategorized (%)']]
     
     # Create stacked bar chart
     ax = plot_df.set_index('Model').plot(kind='bar', stacked=True, figsize=(15, 8), 
@@ -237,8 +240,8 @@ def create_radar_chart(df: pd.DataFrame, output_dir: str):
         output_dir: Directory to save the plot
     """
     # Set up variables for the chart
-    categories = ['Pure English (%)', 'Hangul Possible (%)', 
-                 'Complete Hangul (%)', 'Special Chars (%)', 'Uncategorized (%)']
+    categories = ['Pure English (%)', 'English Containing (%)', 'Pure Hangul (%)', 
+                 'Hangul Containing (%)', 'Special Chars (%)', 'Uncategorized (%)']
     
     # Number of variables
     N = len(categories)
@@ -292,7 +295,7 @@ def create_detailed_table(df: pd.DataFrame, output_dir: str):
     """
     # Style the DataFrame for better visualization
     styled_df = df.style.background_gradient(cmap='Blues', subset=[col for col in df.columns if '%' in col]) \
-                       .format({col: '{:,.0f}' for col in df.columns if 'Total' in col or col in ['Pure English', 'Hangul Possible', 'Complete Hangul', 'Special Chars', 'Uncategorized']}) \
+                       .format({col: '{:,.0f}' for col in df.columns if 'Total' in col or col in ['Pure English', 'English Containing', 'Pure Hangul', 'Hangul Containing', 'Special Chars', 'Uncategorized']}) \
                        .format({col: '{:.2f}%' for col in df.columns if '%' in col}) \
                        .set_caption('Detailed Tokenizer Analysis Comparison')
     
@@ -342,8 +345,9 @@ def create_detailed_table(df: pd.DataFrame, output_dir: str):
             <h3>Explanation of Categories:</h3>
             <ul>
                 <li><strong>Pure English:</strong> Tokens containing only English characters (A-Z, a-z)</li>
-                <li><strong>Hangul Possible:</strong> Tokens that might contain Korean Hangul characters</li>
-                <li><strong>Complete Hangul:</strong> Tokens that definitely contain complete Korean Hangul characters</li>
+                <li><strong>English Containing:</strong> Tokens containing any English characters</li>
+                <li><strong>Pure Hangul:</strong> Tokens containing only Korean Hangul characters</li>
+                <li><strong>Hangul Containing:</strong> Tokens containing any Korean Hangul characters</li>
                 <li><strong>Special Chars:</strong> Tokens containing only special characters (no alphanumeric characters)</li>
                 <li><strong>Uncategorized:</strong> Tokens that don't fit into any of the above categories</li>
             </ul>
@@ -379,10 +383,12 @@ def generate_summary_report(df: pd.DataFrame, output_dir: str):
         'Total Tokens': df['Total Tokens'].mean(),
         'Pure English': df['Pure English'].mean(),
         'Pure English (%)': df['Pure English (%)'].mean(),
-        'Hangul Possible': df['Hangul Possible'].mean(),
-        'Hangul Possible (%)': df['Hangul Possible (%)'].mean(),
-        'Complete Hangul': df['Complete Hangul'].mean(),
-        'Complete Hangul (%)': df['Complete Hangul (%)'].mean(),
+        'English Containing': df['English Containing'].mean(),
+        'English Containing (%)': df['English Containing (%)'].mean(),
+        'Pure Hangul': df['Pure Hangul'].mean(),
+        'Pure Hangul (%)': df['Pure Hangul (%)'].mean(),
+        'Hangul Containing': df['Hangul Containing'].mean(),
+        'Hangul Containing (%)': df['Hangul Containing (%)'].mean(),
         'Special Chars': df['Special Chars'].mean(),
         'Special Chars (%)': df['Special Chars (%)'].mean(),
         'Uncategorized': df['Uncategorized'].mean(),
@@ -392,8 +398,9 @@ def generate_summary_report(df: pd.DataFrame, output_dir: str):
     # Find model with highest percentages in each category
     best_models = {
         'Pure English': df.loc[df['Pure English (%)'].idxmax()]['Model'],
-        'Hangul Possible': df.loc[df['Hangul Possible (%)'].idxmax()]['Model'],
-        'Complete Hangul': df.loc[df['Complete Hangul (%)'].idxmax()]['Model'],
+        'English Containing': df.loc[df['English Containing (%)'].idxmax()]['Model'],
+        'Pure Hangul': df.loc[df['Pure Hangul (%)'].idxmax()]['Model'],
+        'Hangul Containing': df.loc[df['Hangul Containing (%)'].idxmax()]['Model'],
         'Special Chars': df.loc[df['Special Chars (%)'].idxmax()]['Model'],
         'Uncategorized': df.loc[df['Uncategorized (%)'].idxmax()]['Model'],
     }
@@ -406,8 +413,9 @@ def generate_summary_report(df: pd.DataFrame, output_dir: str):
 This report provides a comparison of token category distributions across {len(df)} different tokenizers. The analysis categorizes tokens into several groups:
 
 - **Pure English**: Tokens containing only English alphabetic characters
-- **Hangul Possible**: Tokens that potentially contain Korean Hangul characters
-- **Complete Hangul**: Tokens that definitely contain complete Korean Hangul characters
+- **English Containing**: Tokens containing any English alphabetic characters
+- **Pure Hangul**: Tokens containing only Korean Hangul characters
+- **Hangul Containing**: Tokens containing any Korean Hangul characters 
 - **Special Characters**: Tokens consisting only of special characters (non-alphanumeric)
 - **Uncategorized**: Tokens that don't fit into any of the above categories
 
@@ -416,7 +424,7 @@ This report provides a comparison of token category distributions across {len(df
 - Average vocabulary size: {avg_row['Total Tokens']:,.0f} tokens
 - On average, {avg_row['Pure English (%)']:.2f}% of tokens are pure English
 - {best_models['Pure English']} has the highest percentage of pure English tokens ({df['Pure English (%)'].max():.2f}%)
-- {best_models['Complete Hangul']} has the highest percentage of complete Hangul tokens ({df['Complete Hangul (%)'].max():.2f}%)
+- {best_models['Pure Hangul']} has the highest percentage of pure Hangul tokens ({df['Pure Hangul (%)'].max():.2f}%)
 - {best_models['Special Chars']} has the highest percentage of special character tokens ({df['Special Chars (%)'].max():.2f}%)
 
 ## Visualization Summary
@@ -440,7 +448,7 @@ For detailed results, please refer to:
 Based on the analysis:
 
 - For English language tasks, consider using {best_models['Pure English']} which has the highest proportion of English tokens
-- For Korean language tasks, {best_models['Complete Hangul']} might offer better tokenization
+- For Korean language tasks, {best_models['Pure Hangul']} might offer better tokenization
 - The high proportion of uncategorized tokens in some models ({best_models['Uncategorized']}: {df['Uncategorized (%)'].max():.2f}%) suggests potential for further investigation
 
 """
@@ -492,7 +500,7 @@ def main():
     create_stacked_percentage_chart(comparison_df, args.output_dir)
     create_radar_chart(comparison_df, args.output_dir)
     
-# Create detailed table
+    # Create detailed table
     print("\nGenerating detailed comparison table...")
     create_detailed_table(comparison_df, args.output_dir)
     
